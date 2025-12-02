@@ -1,0 +1,18 @@
+@use 'index' as *;
+
+:lang(ko), :lang(en) {
+  font-family: 'Pretendard Variable', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans TC', sans-serif;
+}
+
+:lang(ja) {
+  font-family: 'Pretendard JP Variable', 'Pretendard JP', 'Pretendard Variable', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans TC', sans-serif;;
+}
+
+#app {
+  min-width: 1280px;
+  width: 100vw;
+  height: 100vh;
+  color: #2f2f2f;
+  box-sizing: border-box;
+}
+

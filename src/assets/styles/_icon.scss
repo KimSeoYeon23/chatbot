@@ -1,0 +1,11 @@
+.icon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+  &.icon-robot {
+    width: 32px;
+    height: 32px;
+    background-image: url('../images/icon-robot.svg');
+  }
+}
