@@ -4,7 +4,6 @@ let baseUrl = 'http://localhost:3002'
 if (env.VITE_APP_API_URL) {
   baseUrl = env.VITE_APP_API_URL
 }
-console.log('baseUrl', baseUrl)
 let aborter = new AbortController()
 
 export default {
