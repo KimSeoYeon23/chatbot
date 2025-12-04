@@ -8,4 +8,10 @@
     height: 32px;
     background-image: url('../images/icon-robot.svg');
   }
+
+  &.icon-close {
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon-close.svg");
+  }
 }

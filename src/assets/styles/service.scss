@@ -1,10 +1,77 @@
-.App {
+.service-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  pointer-events: none; // Allow clicks to pass through the container
+
+  &.open {
+    width: 100%;
+    pointer-events: auto; // Capture clicks when open
+  }
+
+  .btn-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease-in-out;
+    z-index: 1001;
+    pointer-events: auto; // Always allow clicks on the button
+
+    button {
+      background-color: #ec0047;
+      color: #fff;
+      padding: 8px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border: none;
+      cursor: pointer;
+
+      i {
+        font-size: 24px;
+      }
+    }
+  }
+
+  &.open {
+    .btn-container {
+      left: 20px;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+.chatbot-wrapper {
+  width: calc(100% - 200px);
+  height: calc(100vh - 74px);
+  position: absolute;
+  top: 3%;
+  right: 30px;
+  transform: translateX(130%);
+  transition: transform 0.5s ease-in-out;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+  background-color: #f9f9f9; // Add a background color
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+
+  &.open {
+    transform: translateX(0);
+  }
+
   header {
     padding: 16px;
     background-color: #fff;
     box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.06);
     max-height: 74px;
     box-sizing: border-box;
+    border-radius: 10px 10px 0 0;
 
     .icon-wrap {
       display: inline-block;
@@ -20,20 +87,74 @@
     .text {
       font-size: 20px;
       font-weight: 600;
+
+      span {
+        font-size: 12px;
+        padding-left: 2px;
+      }
     }
   }
 
   .content-wrapper {
-    height: calc(100vh - 74px);
+    height: calc(100% - 74px);
+    border-radius: 0 0 10px 10px;
+    position: relative;
 
     .content {
-      height: calc(100vh - 161px);
+      height: calc(100% - 150px);
+      padding: 12px 20px;
+      margin-bottom: 160px;
+      box-sizing: border-box;
+      overflow-y: auto;
+
+      .message {
+
+        &.user {
+          display: flex;
+          align-items: flex-end;
+          margin-bottom: 12px;
+          .message-content {
+             background-color: cornflowerblue;
+             color: white;
+          }
+        }
+
+        &.ai {
+           margin-bottom: 12px;
+        }
+
+        .message-content {
+          padding: 12px;
+          font-size: 18px;
+          box-sizing: border-box;
+          box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.12);
+          background-color: #fff;
+          border-radius: 8px;
+          width: fit-content;
+          max-width: 90%;
+        }
+      }
     }
 
     .ask-container {
+      position: absolute;
       width: 100%;
       margin: auto;
-      padding-bottom: 32px;
+      box-sizing: border-box;
+      border-radius: 0 0 10px 10px;
+      bottom: 32px;
+
+      .select-wrapper {
+        position: absolute;
+        top: -50px;
+        left: 30px;
+
+        select {
+          border-radius: 8px;
+          padding: 8px 16px;
+          box-sizing: border-box;
+        }
+      }
 
       .ask-wrapper {
         gap: 5px;
@@ -44,6 +165,7 @@
         box-sizing: border-box;
         box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.12);
         position: relative;
+        margin: 0 auto; // Center the ask wrapper
 
         .text-wrapper {
           position: relative;
@@ -132,5 +254,73 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .chatbot-wrapper {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    border-radius: 0;
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    header {
+      border-radius: 0;
+      .btn-close {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #888;
+      }
+    }
+    .content-wrapper {
+      border-radius: 0;
+      height: calc(100% - 74px);
+
+      .content {
+        height: calc(100% - 150px);
+      }
+    }
+  }
+
+  .service-wrapper .btn-container {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    left: auto;
+    transform: none;
+  }
+
+  .service-wrapper.open .btn-container {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.message-content.ai {
+  &.typing-indicator {
+    &::after {
+      content: '|';
+      display: inline-block;
+      margin-left: 3px;
+      animation: blink-caret 0.75s step-end infinite;
+    }
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
   }
 }
