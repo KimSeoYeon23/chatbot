@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { GEMINI_MODELS } from "@/libs/constants"
 import ChatbotApi from '@/api/Chatbot'
+import MarkdownRenderer from './MarkdownRenderer';
 
 const Chatbot = ({ open, setOpen, newChat }) => {
   const [model, setModel] = useState('gemini-3-pro-preview')
@@ -103,7 +104,9 @@ const Chatbot = ({ open, setOpen, newChat }) => {
           {messages.map((msg, index) => (
             <div key={index} className={`message ${msg.role} flex flex-column gap-8`}>
               <span>{msg.role === 'ai' ? msg.role.toUpperCase() : msg.role}</span>
-              <div className={`message-content ${msg.role}  ${msg.role === 'ai' && index === messages.length - 1 && (isLoading || isAnswering) ? 'typing-indicator' : ''}`}>{msg.message}</div>
+              <div className={`message-content ${msg.role}  ${msg.role === 'ai' && index === messages.length - 1 && (isLoading || isAnswering) ? 'typing-indicator' : ''}`}>
+                <MarkdownRenderer markdown={msg.message} />
+              </div>
             </div>
           ))}
         </div>
