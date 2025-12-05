@@ -1,46 +1,140 @@
-# Getting Started with Create React App
+# 🤖 Chatbot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Google Gemini AI 기반 챗봇 프론트엔드 애플리케이션입니다.
 
-## Available Scripts
+## 📋 개요
 
-In the project directory, you can run:
+React.js로 구현된 AI 챗봇 UI로, 실시간 스트리밍 응답과 Markdown 렌더링을 지원합니다.
 
-### `npm start`
+## 🛠 기술 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+| 구분 | 기술 |
+|------|------|
+| Framework | React 19 |
+| Build Tool | Vite 7 |
+| HTTP Client | Axios |
+| Markdown | Unified + Remark + Rehype |
+| Styling | SCSS (Sass) |
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 📁 프로젝트 구조
 
-### `npm test`
+```
+chatbot/
+├── src/
+│   ├── api/
+│   │   └── Chatbot/
+│   │       └── index.js        # API 호출 함수
+│   ├── assets/
+│   │   ├── images/             # 아이콘 이미지
+│   │   └── styles/             # SCSS 스타일
+│   ├── components/
+│   │   ├── Chatbot.jsx         # 챗봇 메인 컴포넌트
+│   │   └── MarkdownRenderer.jsx # Markdown 렌더링
+│   ├── libs/
+│   │   └── constants.js        # 상수 정의
+│   ├── utils/
+│   │   └── parse.js            # 데이터 파싱 유틸
+│   ├── App.jsx                 # 메인 앱 컴포넌트
+│   └── index.jsx               # 엔트리 포인트
+├── public/
+└── package.json
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ⚙️ 설치 및 실행
 
-### `npm run build`
+### 1. 저장소 클론
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone https://github.com/KimSeoYeon23/chatbot.git
+cd chatbot
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. 의존성 설치
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+### 3. 환경 변수 설정 (선택)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+필요시 `.env` 파일을 생성하여 API 서버 주소를 설정합니다:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```env
+VITE_API_URL=http://localhost:3000
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 4. 개발 서버 실행
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+pnpm run dev
+```
 
-## Learn More
+브라우저에서 `http://localhost:5173`으로 접속합니다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5. 프로덕션 빌드
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+pnpm run build
+```
+
+### 6. 빌드 미리보기
+
+```bash
+pnpm run preview
+```
+
+## 🖥 주요 기능
+
+### 1. 채팅 인터페이스
+- 직관적인 채팅 UI
+- 메시지 입력 및 전송
+- 대화 내역 표시
+
+### 2. AI 모델 선택
+- `gemini-3-pro-preview` - 최신 프리뷰 모델
+- `gemini-2.5-pro` - 기본 모델
+- `gemini-2.5-flash` - 빠른 응답 모델
+
+### 3. 실시간 스트리밍
+- AI 응답을 실시간으로 수신
+- 타이핑 효과로 자연스러운 UX
+
+### 4. Markdown 렌더링
+- unified + remark + rehype 파이프라인
+- GFM(GitHub Flavored Markdown) 지원
+- 코드 블록, 테이블, 체크리스트 등 지원
+
+### 5. 새 채팅 시작
+- 대화 초기화 기능
+- 새로운 세션 시작
+
+
+## 🔗 관련 프로젝트
+
+- [chatbot-api](https://github.com/KimSeoYeon23/chatbot-api) - Node.js 백엔드 API
+
+## 📦 주요 의존성
+
+```json
+{
+  "react": "^19.2.0",
+  "axios": "^1.13.2",
+  "unified": "^11.0.5",
+  "remark-parse": "^11.0.0",
+  "remark-gfm": "^4.0.1",
+  "remark-rehype": "^11.1.2",
+  "rehype-stringify": "^10.0.1",
+  "sass": "^1.94.2",
+  "vite": "^7.2.6"
+}
+```
+
+## 📄 라이선스
+
+MIT License
+
+## 👤 Author
+
+**KimSeoYeon23**
+
+- GitHub: [@KimSeoYeon23](https://github.com/KimSeoYeon23)
